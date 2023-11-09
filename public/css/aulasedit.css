@@ -1,0 +1,61 @@
+h1{
+    color: white;
+    font-size: 18px;
+}
+
+label{
+    color: white;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+.container {
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #000000;
+    border-radius: 50px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: cursive;
+}
+.btn-primary:hover{
+    background-color:rgb(241, 249, 252);
+    color:#000;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: cursive;
+}
+
+.btn-secondary:hover{
+    background-color:rgb(241, 249, 252);
+    color:#000;
+}
