@@ -15,6 +15,10 @@ h1{
 
 .form-group {
     margin-bottom: 10px;
+    color: white;
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .form-label {

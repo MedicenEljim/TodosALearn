@@ -19,6 +19,6 @@ class Profesores extends Model
 
     public function aulas()
     {
-        return $this->belongsToMany(Aulas::class, 'profesores_aula', 'ID_Profesores', 'ID_Aula'); 
+        return $this->belongsToMany(Aulas::class, 'profesores_aula', 'id', 'ID_aula'); 
     }
 }
