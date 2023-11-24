@@ -35,6 +35,7 @@ class ProfesoresController extends Controller
         'nombre' => 'required',
         'apellidos' => 'required',
         'horario' => 'required',
+        'cedula' => 'required'
         
     ]);
 
@@ -43,6 +44,7 @@ class ProfesoresController extends Controller
         'Nombre' => $request->input('nombre'),
         'Apellidos' => $request->input('apellidos'),
         'Horario' => $request->input('horario'),
+        'Cedula' => $request->input('cedula'),
         
     ]);
 
@@ -85,7 +87,7 @@ class ProfesoresController extends Controller
             'nombre' => 'required|string|max:35',
             'apellidos' => 'required|string|max:35',
             'horario' => 'required|date_format:H:i',
-           
+            'cedula' => 'required|integer|digits:10',
         ]);
     
         // Buscar al profesor por su ID
@@ -99,7 +101,7 @@ class ProfesoresController extends Controller
         $profesor->Nombre = $request->nombre;
         $profesor->Apellidos = $request->apellidos;
         $profesor->Horario = $request->horario;
-       
+        $profesor->Cedula = $request->cedula;
     
         // Guardar los cambios en la base de datos
         $profesor->save();

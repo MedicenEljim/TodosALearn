@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todos a Learn</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="{{ asset('img/icono.png') }}" type="image/png"> 
     <script>
         function mostrarAlerta() {
             alert("Bienvenido Sr./Sra. usuari@. Para navegar en la plataforma, haz clic en el logo.");
@@ -16,7 +17,7 @@
         @include('partials.menu')
     </header>
 
-    <button id="importanteBtn" onclick="mostrarAlerta()">Importante</button>
+    <img id="importanteBtn" src="{{ asset('img/impotant.png') }}" alt="Importante" onclick="mostrarAlerta()">
 
     <div class="container">
         @yield('content') 

@@ -10,6 +10,7 @@
             <div class="card-body">
                 <p class="card-title">Nombres y Apellidos:{{ $profesor->Nombre }} {{ $profesor->Apellidos }}</p>
                 <p class="card-text">Horario: {{ $profesor->Horario }}</p>
+                <p class="card-text">Cedula: {{ $profesor->Cedula }}</p>
             </div>
         </div>
 

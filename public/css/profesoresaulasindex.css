@@ -1,11 +1,27 @@
+body {
+    text-align: center; 
+}
+
+header {
+    margin-bottom: 100px; 
+}
+
 .container {
-    margin-top: 20px;
-    padding: 20px;
+    display: inline-block;
+    margin: 40px auto 20px auto;
+    padding: 1%;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: auto; 
+    position: relative;
 }
 
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
 .form-group {
     margin-bottom: 20px;
 }
@@ -32,18 +48,22 @@
 
 .table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
+    border-collapse: collapse;
+    
 }
 
 .table th, .table td {
     border: 1px solid #0a0a0a; 
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 .table th {
     background-color: #007bff;
     color: #fff;
+    text-align: center;
+    font-family: cursive;
+    font-size: 14px;
 }
 

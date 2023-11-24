@@ -14,12 +14,12 @@ class ProfesoresAulas extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'ID_profesoresaulas', 'id', 'ID_aula'
+        'ID_profesoresaulas', 'Profesores_ID', 'ID_aula'
     ];
 
     public function profesores()
     {
-        return $this->belongsTo(Profesores::class, 'id', 'id');
+        return $this->belongsTo(Profesores::class, 'Profesores_ID', 'Profesores_ID');
     }
 
     public function aulas()

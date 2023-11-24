@@ -24,6 +24,12 @@
                 <input type="time" name="horario" id="horario" class="form-control" required>
             </div>
 
+            <div class="form-group">
+                <label for="cedula">Cedula:</label>
+                <input type="BigInt" name="cedula" id="cedula" class="form-control" required>
+            </div>
+
+
            
 
             <button type="submit" class="btn btn-primary">Guardar</button>

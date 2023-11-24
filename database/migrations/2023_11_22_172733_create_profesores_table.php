@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profesores', function (Blueprint $table) {
-            $table->id();
-            $table->string('Nombre',35);
-            $table->string('Apellidos', 35);
-            $table->time('Horario');
+            $table->id('Profesores_ID');
+            $table->string('Nombre',25);
+            $table->string('Apellidos', 20);
+            $table->time('Horario'); 
+            $table->bigInteger('Cedula'); //Debo correguír a interger 
             $table->timestamps();
         });
     }

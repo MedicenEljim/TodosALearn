@@ -14,10 +14,10 @@
         </div>
 
         <div class="form-group">
-            <label for="id">Selecciona un Profesor:</label>
-            <select name="id" id="id" class="form-control">
+            <label for="Profesores_ID">Selecciona un Profesor:</label>
+            <select name="Profesores_ID" id="Profesores_ID" class="form-control">
                 @foreach ($profesores as $profesor)
-                    <option value="{{ $profesor->id }}">{{ $profesor->Nombre }} {{ $profesor->Apellidos }}</option>
+                    <option value="{{ $profesor->Profesores_ID }}">{{ $profesor->Nombre }} {{ $profesor->Apellidos }}</option>
                 @endforeach
             </select>
         </div>
@@ -40,24 +40,16 @@
             <thead>
                 <tr>
                     <th>ID_profesoresaulas</th>
-                    <th>id</th>
+                    <th>Profesores_ID</th>
                     <th>ID_aula</th>
-                    <th>Nombre del Profesor</th>
-                    <th>Apellidos del Profesor</th>
-                    <th>Nombre del Aula</th>
-                    <th>Num de Estudiantes</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($profesoresAulas as $profesorAula)
                     <tr>
                         <td>{{ $profesorAula->ID_profesoresaulas }}</td>
-                        <td>{{ $profesorAula->profesores->id }}</td>
+                        <td>{{ $profesorAula->profesores->Profesores_ID }}</td>
                         <td>{{ $profesorAula->aulas->ID_aula }}</td>
-                        <td>{{ $profesorAula->profesores->Nombre }}</td>
-                        <td>{{ $profesorAula->profesores->Apellidos }}</td>
-                        <td>{{ $profesorAula->aulas->Nombre_del_aula }}</td>
-                        <td>{{ $profesorAula->aulas->num_estudiantes }}</td>
                     </tr>
                 @endforeach
             </tbody>

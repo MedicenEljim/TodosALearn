@@ -6,9 +6,9 @@
         <h1>Editar Profesor</h1>
 
       
-        <form method="POST" action="{{ route('profesores.update', $profesor->id) }}">
+        <form method="POST" action="{{ route('profesores.update', $profesor->Profesores_ID) }}">
             @csrf
-            @method('PUT') <!-- Utilizar el método PUT para la actualización -->
+            @method('PUT') 
 
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -23,6 +23,11 @@
             <div class="form-group">
                 <label for="horario">Horario:</label>
                 <input type="time" name="horario" id="horario" class="form-control" value="{{ $profesor->Horario }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cedula">Cedula:</label>
+                <input type="number" name="cedula" id="cedula" class="form-control" value="{{ $profesor->Cedula }}" required>
             </div>
 
             

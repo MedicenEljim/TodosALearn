@@ -26,13 +26,13 @@ class ProfesoresAulasController extends Controller
     public function createRelationship(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            'Profesores_ID' => 'required',
             'ID_aula' => 'required',
         ]);
     
         // Crea una nueva relación entre el profesor y el aula
         $relacion = ProfesoresAulas::create([
-            'id' => $request->id,
+            'Profesores_ID' => $request->Profesores_ID,
             'ID_aulas' => $request->ID_aulas,
         ]);
     
@@ -50,14 +50,14 @@ class ProfesoresAulasController extends Controller
     {
        
         $request->validate([
-            'id' => 'required',
+            'Profesores_ID' => 'required',
             'ID_aula' => 'required',
             'ID_profesoresaulas' => 'required', 
         ]);
 
         // Crea una nueva relación entre el profesor y el aula en la tabla ProfesoresAulas
         ProfesoresAulas::create([
-            'id' => $request->id,
+            'Profesores_ID' => $request->Profesores_ID,
             'ID_aula' => $request->ID_aula,
             'ID_profesoresaulas' => $request->ID_profesoresaulas, 
         ]);

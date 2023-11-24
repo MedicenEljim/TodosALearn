@@ -9,16 +9,16 @@ class Profesores extends Model
 {
     protected $table = 'profesores'; 
 
-    protected $primaryKey = 'id'; 
+    protected $primaryKey = 'Profesores_ID'; 
 
     public $timestamps = false; 
 
     protected $fillable = [
-        'Nombre', 'Apellidos', 'Horario'
+        'Nombre', 'Apellidos', 'Horario', 'Cedula'
     ];
 
     public function aulas()
     {
-        return $this->belongsToMany(Aulas::class, 'profesores_aula', 'id', 'ID_aula'); 
+        return $this->belongsToMany(Aulas::class, 'profesoresaulas', 'Profesores_ID', 'ID_aula'); 
     }
 }

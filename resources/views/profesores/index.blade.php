@@ -12,25 +12,27 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Profesores_ID</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Horario</th>
+                        <th>Cedula</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($profesores as $profesor)
                         <tr>
-                            <td>{{ $profesor->id }}</td>
+                            <td>{{ $profesor->Profesores_ID }}</td>
                             <td>{{ $profesor->Nombre }}</td>
                             <td>{{ $profesor->Apellidos }}</td>
                             <td>{{ $profesor->Horario }}</td>
+                            <td>{{ $profesor->Cedula }}</td>
                             <td>
-                                <a href="{{ route('profesores.show', $profesor->id) }}" class="btn btn-info">Ver</a>
-                                <a href="{{ route('profesores.edit', $profesor->id) }}" class="btn btn-primary">Editar</a>
+                                <a href="{{ route('profesores.show', $profesor->Profesores_ID) }}" class="btn btn-info">Ver</a>
+                                <a href="{{ route('profesores.edit', $profesor->Profesores_ID) }}" class="btn btn-primary">Editar</a>
 
-                                <form action="{{ route('profesores.destroy', $profesor->id) }}" method="POST" style="display: inline;">
+                                <form action="{{ route('profesores.destroy', $profesor->Profesores_ID) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
