@@ -13,63 +13,94 @@ class ProfesorController extends Controller
      */
     public function index()
     {
-        return response()->json(Profesores::all(), 200); //200: OK
+       $profesores = Profesores::all();
+       return response()->json($profesores, 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-
-     public function store(Request $request)
-     {
-     //Validar los datos de entrada
-     $datos = $request->validate([
-     'Nombre' => ['required', 'string', 'max:35'],
-     'Apellidos' => ['required', 'string', 'max:35'],
-     'Horario' => ['required', 'date_format:H:i'],
-     'Cedula' => ['required', 'integer'],
-     'ID_aula' => ['required', 'integer', 'exists:aula,id'] 
-     ]);
+    public function store(Request $request)
+    {
+        $datos = $request->validate([
+            'Nombre' => ['required', 'string', 'max:20'],
+            'Apellidos' => ['required', 'string', 'max:20'],
+            'Horario' => ['required', 'date_format:H:i:s'],
+            'Cedula' => ['required', 'integer']
+        ]);
     
-     //Crear el producto
-     $profesores = Profesores::create($datos);
-     return response()->json(['success' => true, 'message' => 'profesor creado'], 201);
-    //201: Created
-     }
+        try { //El try y el catch se utilizan para manejar exepciones(errores que ocurren durante la ejecución de un script)
+            $profesor = Profesores::create([
+                'Nombre' => $datos['Nombre'], 
+                'Apellidos' => $datos['Apellidos'],
+                'Horario' => $datos['Horario'],
+                'Cedula' => $datos['Cedula'],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al crear el profesor', 'message' => $e->getMessage()], 500);
+        }
+    
+        return response()->json(['success' => true, 'message' => 'Profesor creado exitosamente', 'profesor' => $profesor], 201);
+    }
 
     /**
      * Display the specified resource.
      */
-    public function show(Profesores $profesores)
+    public function show($id)
     {
-        return response()->json($profesores, 200); //200: OK
+        $profesor = Profesores::find($id);
+
+        if (!$profesor) {
+            return response()->json(['error' => 'Profesor no encontrado'], 404);
+        }
+
+        return response()->json($profesor, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profesores $profesores)
+    public function update(Request $request, $id)
     {
-         //Validar los datos de entrada
- $datos = $request->validate([
-    'Nombre' => ['required', 'string', 'max:35'],
-    'Apellidos' => ['required', 'string', 'max:35'],
-    'Horario' => ['required', 'date_format:H:i'],
-    'Cedula' => ['required', 'integer']
-    ]);
-    //Actualizar el profesor
-    $profesores->update($datos);
-    return response()->json(['success' => true, 'message' => 'Datos del profesor actualizados'], 200);
-   //200: OK
+        $profesor = Profesores::find($id);
+    
+        if (!$profesor) {
+            return response()->json(['error' => 'Profesor no encontrado'], 404);
+        }
+    
+        $datos = $request->validate([
+            'Nombre' => ['required', 'string', 'max:20'],
+            'Apellidos' => ['required', 'string', 'max:20'],
+            'Horario' => ['required', 'date_format:H:i:s'],
+            'Cedula' => ['required', 'integer'], 
+        ]);
+    
+        try {
+            $profesor->update([
+                'Nombre' => $datos['Nombre'],
+                'Apellidos' => $datos['Apellidos'],
+                'Horario' => $datos['Horario'],
+                'Cedula' => $datos['Cedula'],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al actualizar el profesor', 'message' => $e->getMessage()], 500);
+        }
+    
+        return response()->json(['success' => true, 'message' => 'Profesor actualizado con éxito', 'profesor' => $profesor], 200);
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Profesores $profesores)
+    public function destroy($id)
     {
-        $profesores->delete();
-        return response()->json(['success' => true, 'message' => 'profesor eliminado'], 204);
-       //204: No content
+        $profesor = Profesores::find($id);
+
+        if (!$profesor) {
+            return response()->json(['error' => 'Profesor no encontrado'], 404);
+        }
+
+        $profesor->delete();
+        return response()->json(['success' => true, 'message' => 'Profesor eliminado'], 204);
     }
 }
