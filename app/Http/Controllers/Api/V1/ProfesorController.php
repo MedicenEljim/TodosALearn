@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profesores;
+use App\Models\Aulas;
 use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
@@ -13,7 +14,7 @@ class ProfesorController extends Controller
      */
     public function index()
     {
-       $profesores = Profesores::all();
+       $profesores = Profesores::with('aulas')->get();
        return response()->json($profesores, 200);
     }
 
@@ -26,7 +27,8 @@ class ProfesorController extends Controller
             'Nombre' => ['required', 'string', 'max:20'],
             'Apellidos' => ['required', 'string', 'max:20'],
             'Horario' => ['required', 'date_format:H:i:s'],
-            'Cedula' => ['required', 'integer']
+            'Cedula' => ['required', 'integer'],
+            'ID_aula' => ['required', 'exists:aulas,ID_aula']
         ]);
     
         try { //El try y el catch se utilizan para manejar exepciones(errores que ocurren durante la ejecución de un script)
@@ -35,6 +37,7 @@ class ProfesorController extends Controller
                 'Apellidos' => $datos['Apellidos'],
                 'Horario' => $datos['Horario'],
                 'Cedula' => $datos['Cedula'],
+                'ID_aula' => $datos['ID_aula'],
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al crear el profesor', 'message' => $e->getMessage()], 500);
@@ -48,7 +51,7 @@ class ProfesorController extends Controller
      */
     public function show($id)
     {
-        $profesor = Profesores::find($id);
+        $profesor = Profesores::with('aulas')->find($id);
 
         if (!$profesor) {
             return response()->json(['error' => 'Profesor no encontrado'], 404);
@@ -73,6 +76,7 @@ class ProfesorController extends Controller
             'Apellidos' => ['required', 'string', 'max:20'],
             'Horario' => ['required', 'date_format:H:i:s'],
             'Cedula' => ['required', 'integer'], 
+            'ID_aula' => ['required', 'exists:aulas,ID_aula'],
         ]);
     
         try {
@@ -81,6 +85,7 @@ class ProfesorController extends Controller
                 'Apellidos' => $datos['Apellidos'],
                 'Horario' => $datos['Horario'],
                 'Cedula' => $datos['Cedula'],
+                'ID_aula' => $datos['ID_aula'],
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al actualizar el profesor', 'message' => $e->getMessage()], 500);

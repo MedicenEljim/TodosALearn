@@ -9,14 +9,14 @@ use Tests\TestCase;
 class ProfesoresTest extends TestCase
 {
     
-    public function test_obtener_todos_los_profesores(): void
+    public function test_obtener_todos_los_profesores_y_aulas_asociadas(): void
     {
         $response = $this->get('/api/v1/profesores');
 
         $response->assertStatus(200)
             ->assertJsonStructure([
                 
-                '*' => ['Profesores_ID', 'Nombre', 'Apellidos', 'Horario', 'Cedula'],
+                '*' => ['Profesores_ID', 'Nombre', 'Apellidos', 'Horario', 'Cedula']
             ]);
     }
 
@@ -30,7 +30,7 @@ class ProfesoresTest extends TestCase
         $response->assertStatus(200)
             ->assertJsonStructure([
                
-                'Profesores_ID', 'Nombre', 'Apellidos', 'Horario', 'Cedula',
+                'Profesores_ID', 'Nombre', 'Apellidos', 'Horario', 'Cedula'
             ]);
     }
 
@@ -40,10 +40,11 @@ class ProfesoresTest extends TestCase
         $profesorId = 11;
 
         $response = $this->put("/api/v1/profesores/$profesorId", [
-            'Nombre' => 'Fabian Rolando ',
-            'Apellidos' => 'Caballero Cortes',
+            'Nombre' => 'Paola',
+            'Apellidos' => 'Urrego Montes',
             'Horario' => '10:30:00',
-            'Cedula' => '982489128',
+            'Cedula' => '100401293',
+            'ID_aula' => '3'
         ]);
 
         $response->assertStatus(200)
