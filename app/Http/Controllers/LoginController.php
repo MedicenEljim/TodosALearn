@@ -49,7 +49,7 @@ class LoginController extends Controller
      */
     public function crearCuenta()
     {
-        return view('Login.crearCuenta');
+        return view('Login.crearcuenta');
     }
 
     /**
