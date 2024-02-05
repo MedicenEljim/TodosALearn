@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfesoresAulasController;
 use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
-    return view('Login.index');
+    return view('Login.Index');
 });
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
